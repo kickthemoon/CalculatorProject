@@ -1,6 +1,8 @@
 package calculatorproject;
 
 import java.util.Scanner;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class Calculator {
     public static void main(String[] args) {
@@ -20,17 +22,19 @@ public class Calculator {
 
         scanner.nextLine(); // 버퍼에 남은 개행문자 제거
 
-        // 사칙연산 기호 입력받기 + 입력 받을때 까지 대기 하기
-        System.out.println("사칙연산 기호를 넣어주세요 (+, -, *, /): ");
-        String arithmeticOperations = scanner.nextLine();
-        char operation = arithmeticOperations.charAt(0);
+        // 사칙연산 기호 입력받기
 
         while (true) {
+            System.out.println("사칙연산 기호를 넣어주세요 (+, -, *, /): ");
+            String arithmeticOperations = scanner.nextLine();
+            char operation = arithmeticOperations.charAt(0);
+
             if (operation == '+' || operation == '-' || operation == '*' || operation == '/') {
                 System.out.println("사칙연산 기호는 " + operation + "입니다");
                 break;
+            } else {
+                System.out.println("사칙연산 기호가 아닙니다.");
             }
-            System.out.println("사칙연산 기호가 아닙니다.");
         }
     }
 }
