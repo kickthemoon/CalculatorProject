@@ -1,10 +1,8 @@
 package calculatorproject;
 
 import java.util.Scanner;
-import java.util.Timer;
-import java.util.TimerTask;
 
-public class Calculator {
+public class App {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         String end;
