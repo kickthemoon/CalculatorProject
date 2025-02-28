@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 
 public class Calculator {
-    private int firstInteger;
-    private int secondInteger;
+    private int firstNumber;
+    private int secondNumber;
     private double result;
     private char operation;
     private boolean isShowResult; // App과 Calculator의 데이터가 주고 받아야 하기에 protected 선언
@@ -15,11 +15,11 @@ public class Calculator {
     private ArrayList<Double> arrayResult = new ArrayList<>();
 
     //세터
-    void firstInteger(int Integer) {
-        this.firstInteger = Integer;
+    void setFirstNumber(int Num) {
+        this.firstNumber = Num;
     }
-    void secondInteger(int Integer) {
-        this.secondInteger = Integer;
+    void setSecondNumber(int Num) {
+        this.secondNumber = Num;
     }
     void setOperation(char operation) {
         this.operation = operation;
@@ -43,23 +43,23 @@ public class Calculator {
     }
 
     // 계산기 메소드
-    public double Calculator() {
+    public double calculator() {
         switch (operation) {
             case '+':
-                result = firstInteger + secondInteger;
+                result = firstNumber + secondNumber;
                 arrayResult.add(result);
                 break;
             case '-':
-                result = firstInteger - secondInteger;
+                result = firstNumber - secondNumber;
                 arrayResult.add(result);
                 break;
             case '*':
-                result = firstInteger * secondInteger;
+                result = firstNumber * secondNumber;
                 arrayResult.add(result);
                 break;
             case '/':
-                if (secondInteger != 0) {
-                    result = firstInteger / (double) secondInteger;
+                if (secondNumber != 0) {
+                    result = firstNumber / (double) secondNumber;
                     arrayResult.add(result);
                     break;
                 } else {
@@ -76,6 +76,6 @@ public class Calculator {
 
     // 제거 메소드
     public void removeResult() {
-        arrayResult.remove(0);
+        this.arrayResult.remove(0);
     }
 }

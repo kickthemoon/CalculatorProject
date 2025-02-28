@@ -8,8 +8,8 @@ public class App {
         Calculator calculator = new Calculator();
         String end;
         double result;
-        int firstScanInt;
-        int secondScanInt;
+        int firstScanNumber;
+        int secondScanNumber;
         String delete;
 
         do {
@@ -18,14 +18,14 @@ public class App {
             System.out.println("계산기 입니다. 두 숫자를 입력하세요");
 
             System.out.print("첫번째 숫자입니다. ");
-            firstScanInt = scanner.nextInt();
-            calculator.firstInteger(firstScanInt);
+            firstScanNumber = scanner.nextInt();
+            calculator.setFirstNumber(firstScanNumber);
 
             System.out.print("두번째 숫자입니다. ");
-            secondScanInt = scanner.nextInt();
-            calculator.secondInteger(secondScanInt);
+            secondScanNumber = scanner.nextInt();
+            calculator.setSecondNumber(secondScanNumber);
 
-            System.out.println("당신이 입력한 두 숫자입니다. 첫번째는 " + firstScanInt + " 이고 두번째는 " + secondScanInt + " 입니다");
+            System.out.println("당신이 입력한 두 숫자입니다. 첫번째는 " + firstScanNumber + " 이고 두번째는 " + secondScanNumber + " 입니다");
 
             scanner.nextLine(); // 버퍼에 남은 개행문자 제거
 
@@ -34,7 +34,7 @@ public class App {
             calculator.setOperation(arithmeticOperations.charAt(0));
 
             // 사칙 연산 계산기
-            calculator.Calculator();
+            calculator.calculator();
 
             // 결과 받아오기
             result = calculator.getResult();
@@ -53,7 +53,7 @@ public class App {
                 if (calculator.getArrayResultSize()>0) {
                     System.out.println("가장 먼저 저장된: " + calculator.getArrayResultFirst() + " 를 삭제하였습니다.");
                     calculator.removeResult();
-                    } else {
+                } else {
                     System.out.println("저장된 데이터가 없습니다.");
                 }
             }
