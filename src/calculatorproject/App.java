@@ -10,6 +10,8 @@ public class App {
         double result;
         int firstIntergerApp;
         int secondIntergerApp;
+        int appSaveResultCounter=0;
+        String delite;
 
         do {
             // 양의 정수 입력받기
@@ -37,12 +39,27 @@ public class App {
             // 결과 받아오기
             result = calculator.getResult();
 
-            //잘못 입력했을때 결과값 출력하지 않기
+            // 잘못 입력했을때 결과값 출력하지 않기
             if(!calculator.noShowResult) {
                 System.out.println("값은: " + result);
+                System.out.println("저장된 값은: " + calculator.getsaveResult() + " 입니다.");
+                appSaveResultCounter++;
+                calculator.setSaveResultCounter(appSaveResultCounter);
             }
             calculator.noShowResult = false;
+            // 저장된 데이터 삭제 하기
+            System.out.println("가장 먼저 저장된 데이터를 삭제 하실려면 delite를 입력하세요.");
+            delite = scanner.nextLine();
 
+            if (delite.equals("delite")) {
+                if (appSaveResultCounter > 0) {
+                    System.out.println("가장 먼저 저장된: " + calculator.setShowArraySaveResult() + " 를 삭제하였습니다.");
+                    calculator.removeResult();
+                    appSaveResultCounter--;
+                    } else {
+                    System.out.println("저장된 데이터가 없습니다!");
+                }
+            }
             System.out.println("계산기를 종료하고 싶으면 exit를 입력하세요.");
             end = scanner.nextLine();
         } while (!end.equals("exit"));

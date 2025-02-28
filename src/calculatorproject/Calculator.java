@@ -1,34 +1,47 @@
 package calculatorproject;
 
+import java.util.ArrayList;
+import java.util.Scanner;
+
 public class Calculator {
     private int firstInterger;
     private int secondInterger;
     private double result;
     private char operation;
     public boolean noShowResult; // App과 Calculator의 데이터가 주고 받아야 하기에 public 선언
-    private int counter=0;
+    private int intergerCounter=0;
+    private int saveResultCounter=0;
 
+    private ArrayList<Double> arraySaveResult = new ArrayList<>();
     //세터
     void setInterger(int Interger) {
-        if (counter==0) {
+        if (intergerCounter==0) {
             this.firstInterger = Interger;
         } else {
             this.secondInterger = Interger;
         }
-        counter++;
+        intergerCounter++;
     }
     void setOperation(char operation) {
         this.operation = operation;
+    }
+    void setSaveResultCounter(int saveResultCounter) {
+        this.saveResultCounter = saveResultCounter;
+    }
+    double setShowArraySaveResult() {
+        return this.arraySaveResult.get(0);
     }
 
     // 게터
     double getResult(){
         return this.result;
     }
+    double getsaveResult(){
+        return this.arraySaveResult.get(saveResultCounter);
+    }
 
 
     public double Calculator() {
-
         if (operation == '+' || operation == '-' || operation == '*' || operation == '/') {
             switch (operation) {
                 case '+':
@@ -53,7 +66,12 @@ public class Calculator {
             System.out.println("사칙연산 기호가 아닙니다.");
             noShowResult = true;
         }
-        counter = 0;
+        intergerCounter = 0;
+        arraySaveResult.add(result);
         return result;
+    }
+
+    public void removeResult() {
+        arraySaveResult.remove(0);
     }
 }
