@@ -6,14 +6,18 @@ public class Calculator {
     private double result;
     private char operation;
     public boolean noshowResult;
+    private int counter=0;
 
     //세터
-    void setFirstInterger(int firstInterger) {
-        this.firstInterger = firstInterger;
+    void setInterger(int Interger) {
+        if (counter==0) {
+            this.firstInterger = Interger;
+        } else {
+            this.secondInterger = Interger;
+        }
+        counter++;
     }
-    void setSecondInterger(int secondInterger) {
-        this.secondInterger = secondInterger;
-    }
+
     void setOperation(char operation) {
         this.operation = operation;
     }
@@ -50,6 +54,7 @@ public class Calculator {
             System.out.println("사칙연산 기호가 아닙니다.");
             noshowResult = true;
         }
+        counter = 0;
         return result;
     }
 }

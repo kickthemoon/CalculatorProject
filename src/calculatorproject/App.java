@@ -17,11 +17,11 @@ public class App {
 
             System.out.print("첫번째 숫자입니다. ");
             firstIntergerApp = scanner.nextInt();
-            calculator.setFirstInterger(firstIntergerApp);
+            calculator.setInterger(firstIntergerApp);
 
             System.out.print("두번째 숫자입니다. ");
             secondIntergerApp = scanner.nextInt();
-            calculator.setSecondInterger(secondIntergerApp);
+            calculator.setInterger(secondIntergerApp);
 
             System.out.println("당신이 입력한 두 숫자입니다. 첫번째는 " + 1 + " 이고 두번째는 " + 2 + " 입니다");
 
