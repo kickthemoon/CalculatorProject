@@ -8,24 +8,24 @@ public class App {
         Calculator calculator = new Calculator();
         String end;
         double result;
-        int firstIntergerApp;
-        int secondIntergerApp;
-        int appSaveResultCounter=0;
-        String delite;
+        int firstScanInt;
+        int secondScanInt;
+        String delete;
 
         do {
             // 양의 정수 입력받기
+
             System.out.println("계산기 입니다. 두 숫자를 입력하세요");
 
             System.out.print("첫번째 숫자입니다. ");
-            firstIntergerApp = scanner.nextInt();
-            calculator.setInterger(firstIntergerApp);
+            firstScanInt = scanner.nextInt();
+            calculator.firstInteger(firstScanInt);
 
             System.out.print("두번째 숫자입니다. ");
-            secondIntergerApp = scanner.nextInt();
-            calculator.setInterger(secondIntergerApp);
+            secondScanInt = scanner.nextInt();
+            calculator.secondInteger(secondScanInt);
 
-            System.out.println("당신이 입력한 두 숫자입니다. 첫번째는 " + firstIntergerApp + " 이고 두번째는 " + secondIntergerApp + " 입니다");
+            System.out.println("당신이 입력한 두 숫자입니다. 첫번째는 " + firstScanInt + " 이고 두번째는 " + secondScanInt + " 입니다");
 
             scanner.nextLine(); // 버퍼에 남은 개행문자 제거
 
@@ -40,26 +40,25 @@ public class App {
             result = calculator.getResult();
 
             // 잘못 입력했을때 결과값 출력하지 않기
-            if(!calculator.noShowResult) {
+            if(!calculator.getisShowResult()) {
                 System.out.println("값은: " + result);
-                System.out.println("저장된 값은: " + calculator.getsaveResult() + " 입니다.");
-                appSaveResultCounter++;
-                calculator.setSaveResultCounter(appSaveResultCounter);
             }
-            calculator.noShowResult = false;
-            // 저장된 데이터 삭제 하기
-            System.out.println("가장 먼저 저장된 데이터를 삭제 하실려면 delite를 입력하세요.");
-            delite = scanner.nextLine();
+            calculator.setIsShowResult(false);
 
-            if (delite.equals("delite")) {
-                if (appSaveResultCounter > 0) {
-                    System.out.println("가장 먼저 저장된: " + calculator.setShowArraySaveResult() + " 를 삭제하였습니다.");
+            // 저장된 데이터 삭제 하기
+            System.out.println("가장 먼저 저장된 데이터를 삭제 하실려면 delete를 입력하세요.");
+            delete = scanner.nextLine();
+
+            if (delete.equals("delete")) {
+                if (calculator.getArrayResultSize()>0) {
+                    System.out.println("가장 먼저 저장된: " + calculator.getArrayResultFirst() + " 를 삭제하였습니다.");
                     calculator.removeResult();
-                    appSaveResultCounter--;
                     } else {
-                    System.out.println("저장된 데이터가 없습니다!");
+                    System.out.println("저장된 데이터가 없습니다.");
                 }
             }
+
+            // exit로 프로그램 종료
             System.out.println("계산기를 종료하고 싶으면 exit를 입력하세요.");
             end = scanner.nextLine();
         } while (!end.equals("exit"));
