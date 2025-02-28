@@ -5,7 +5,7 @@ public class Calculator {
     private int secondInterger;
     private double result;
     private char operation;
-    public boolean noshowResult;
+    public boolean noShowResult; // App과 Calculator의 데이터가 주고 받아야 하기에 public 선언
     private int counter=0;
 
     //세터
@@ -17,7 +17,6 @@ public class Calculator {
         }
         counter++;
     }
-
     void setOperation(char operation) {
         this.operation = operation;
     }
@@ -47,12 +46,12 @@ public class Calculator {
                         break;
                     } else {
                         System.out.println("두번째 숫자에는 0이 오면 나눌 수 없습니다.");
-                        noshowResult = true;
+                        noShowResult = true;
                     }
             }
         } else {
             System.out.println("사칙연산 기호가 아닙니다.");
-            noshowResult = true;
+            noShowResult = true;
         }
         counter = 0;
         return result;

@@ -23,7 +23,7 @@ public class App {
             secondIntergerApp = scanner.nextInt();
             calculator.setInterger(secondIntergerApp);
 
-            System.out.println("당신이 입력한 두 숫자입니다. 첫번째는 " + 1 + " 이고 두번째는 " + 2 + " 입니다");
+            System.out.println("당신이 입력한 두 숫자입니다. 첫번째는 " + firstIntergerApp + " 이고 두번째는 " + secondIntergerApp + " 입니다");
 
             scanner.nextLine(); // 버퍼에 남은 개행문자 제거
 
@@ -38,10 +38,10 @@ public class App {
             result = calculator.getResult();
 
             //잘못 입력했을때 결과값 출력하지 않기
-            if(!calculator.noshowResult) {
+            if(!calculator.noShowResult) {
                 System.out.println("값은: " + result);
             }
-            calculator.noshowResult = false;
+            calculator.noShowResult = false;
 
             System.out.println("계산기를 종료하고 싶으면 exit를 입력하세요.");
             end = scanner.nextLine();
