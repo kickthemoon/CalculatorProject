@@ -13,7 +13,7 @@ public class App {
         String delete;
 
         do {
-            // 양의 정수 입력받기, 무한반복
+            // 양의 정수 입력받기, 숫자 입력 오류 예외처리
             System.out.println("계산기 입니다. 두 숫자를 입력하세요");
 
             while(true) {
