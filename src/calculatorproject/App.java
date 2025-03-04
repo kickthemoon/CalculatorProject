@@ -8,8 +8,8 @@ public class App {
         Calculator calculator = new Calculator();
         String end;
         double result;
-        int firstScanNumber;
-        int secondScanNumber;
+        double firstScanNumber;
+        double secondScanNumber;
         String delete;
 
         do {
@@ -19,26 +19,26 @@ public class App {
             while(true) {
                 System.out.print("첫번째 숫자입니다. ");
                 try{
-                    firstScanNumber = scanner.nextInt();
+                    calculator.setFirstNumber(scanner.nextDouble());
                     break;
                 } catch (Exception e){
                     System.out.println("숫자가 아닙니다. 다시 입력하세요.");
                     scanner.nextLine();
                 }
             }
-            calculator.setFirstNumber(firstScanNumber);
-
             while(true) {
                 System.out.print("두번째 숫자입니다. ");
                 try{
-                    secondScanNumber = scanner.nextInt();
+                    calculator.setSecondNumber(scanner.nextDouble());
                     break;
                 } catch (Exception e){
                     System.out.println("숫자가 아닙니다. 다시 입력하세요.");
                     scanner.nextLine();
                 }
             }
-            calculator.setSecondNumber(secondScanNumber);
+
+            firstScanNumber = (double)calculator.getFirstNumber();
+            secondScanNumber = (double)calculator.getSecondNumber();
 
             System.out.println("당신이 입력한 두 숫자입니다. 첫번째는 " + firstScanNumber + " 이고 두번째는 " + secondScanNumber + " 입니다");
 
@@ -55,10 +55,9 @@ public class App {
             result = calculator.getResult();
 
             // 사칙연산 기호를 잘못 입력했을때 결과값 출력하지 않기
-            if(calculator.getIsShowResult()==true) {
+            if(calculator.getIsShowResult()!=false) {
                 System.out.println("값은: " + result);
             }
-            calculator.setIsShowResult(true);
 
             // 저장된 데이터 삭제 하기
             System.out.println("가장 먼저 저장된 데이터를 삭제 하실려면 delete를 입력하세요.");

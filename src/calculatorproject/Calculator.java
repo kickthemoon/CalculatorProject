@@ -3,9 +3,10 @@ package calculatorproject;
 import java.util.ArrayList;
 import java.util.function.BiFunction;
 
-public class Calculator {
-    private int firstNumber;
-    private int secondNumber;
+    // 제네릭 메서드 선언, 제네릭 함수로 스캐너 받기
+public class Calculator<T> {
+    private T firstNumber;
+    private T secondNumber;
     private double result;
     private char operator;
     private boolean isShowResult;
@@ -14,11 +15,11 @@ public class Calculator {
     private ArrayList<Double> arrayResult = new ArrayList<>();
 
     //세터
-    void setFirstNumber(int Num) {
-        this.firstNumber = Num;
+    void setFirstNumber(T num) {
+        this.firstNumber = num;
     }
-    void setSecondNumber(int Num) {
-        this.secondNumber = Num;
+    void setSecondNumber(T num) {
+        this.secondNumber = num;
     }
     void setOperation(char operator) {
         this.operator = operator;
@@ -29,6 +30,12 @@ public class Calculator {
 
 
     // 게터
+    T getFirstNumber() {
+        return  this.firstNumber;
+    }
+    T getSecondNumber() {
+        return  this.secondNumber;
+    }
     double getResult(){
         return this.result;
     }
@@ -41,6 +48,7 @@ public class Calculator {
     boolean getIsShowResult() {
         return this.isShowResult;
     }
+
     // enum 을 이용한 사칙연산 계산기
     enum Operation {
         ADD('+', (x, y) -> x + y),
@@ -76,9 +84,10 @@ public class Calculator {
 
     // 실질적으로 계산 처리 하는 메소드
     public double calculator() {
+        isShowResult = true;
         Operation operation = Operation.fromSymbol(operator);
         if(operation != null) {
-            result = operation.apply(firstNumber, secondNumber);
+            result = operation.apply((double)firstNumber, (double)secondNumber);
             arrayResult.add(result);
         } else {
             System.out.println("잘못된 연산자입니다");
@@ -87,7 +96,7 @@ public class Calculator {
         return result;
     }
 
-    // 제거 메소드
+    // 저장된 값 중 첫번째 저장값 제거 메소드
     public void removeResult() {
         this.arrayResult.remove(0);
     }
