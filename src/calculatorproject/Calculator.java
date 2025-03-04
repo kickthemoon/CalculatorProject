@@ -8,7 +8,7 @@ public class Calculator {
     private int secondNumber;
     private double result;
     private char operation;
-    private boolean isShowResult; // App과 Calculator의 데이터가 주고 받아야 하기에 protected 선언
+    private boolean isShowResult;
 
 
     // 배열 선언

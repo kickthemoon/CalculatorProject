@@ -13,16 +13,31 @@ public class App {
         String delete;
 
         do {
-            // 양의 정수 입력받기
-
+            // 양의 정수 입력받기, 무한반복
             System.out.println("계산기 입니다. 두 숫자를 입력하세요");
 
-            System.out.print("첫번째 숫자입니다. ");
-            firstScanNumber = scanner.nextInt();
+            while(true) {
+                System.out.print("첫번째 숫자입니다. ");
+                try{
+                    firstScanNumber = scanner.nextInt();
+                    break;
+                } catch (Exception e){
+                    System.out.println("숫자가 아닙니다. 다시 입력하세요.");
+                    scanner.nextLine();
+                }
+            }
             calculator.setFirstNumber(firstScanNumber);
 
-            System.out.print("두번째 숫자입니다. ");
-            secondScanNumber = scanner.nextInt();
+            while(true) {
+                System.out.print("두번째 숫자입니다. ");
+                try{
+                    secondScanNumber = scanner.nextInt();
+                    break;
+                } catch (Exception e){
+                    System.out.println("숫자가 아닙니다. 다시 입력하세요.");
+                    scanner.nextLine();
+                }
+            }
             calculator.setSecondNumber(secondScanNumber);
 
             System.out.println("당신이 입력한 두 숫자입니다. 첫번째는 " + firstScanNumber + " 이고 두번째는 " + secondScanNumber + " 입니다");
@@ -39,7 +54,7 @@ public class App {
             // 결과 받아오기
             result = calculator.getResult();
 
-            // 잘못 입력했을때 결과값 출력하지 않기
+            // 사칙연산 기호를 잘못 입력했을때 결과값 출력하지 않기
             if(!calculator.getisShowResult()) {
                 System.out.println("값은: " + result);
             }
