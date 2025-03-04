@@ -55,10 +55,10 @@ public class App {
             result = calculator.getResult();
 
             // 사칙연산 기호를 잘못 입력했을때 결과값 출력하지 않기
-            if(!calculator.getisShowResult()) {
+            if(calculator.getIsShowResult()==true) {
                 System.out.println("값은: " + result);
             }
-            calculator.setIsShowResult(false);
+            calculator.setIsShowResult(true);
 
             // 저장된 데이터 삭제 하기
             System.out.println("가장 먼저 저장된 데이터를 삭제 하실려면 delete를 입력하세요.");
