@@ -10,6 +10,7 @@ public class App {
         double result;
         double firstScanNumber;
         double secondScanNumber;
+        double compareNumber;
         String delete;
 
         do {
@@ -58,6 +59,24 @@ public class App {
             if(calculator.getIsShowResult()!=false) {
                 System.out.println("값은: " + result);
             }
+
+            System.out.println("저장된 값은: " + calculator.getArraylistResult() + "입니다.");
+
+            // 비교 숫자 받기
+            while(true) {
+                System.out.print("저장된 값과 비교할 숫자를 입력하세요.");
+                try{
+                    compareNumber = scanner.nextDouble();
+                    break;
+                } catch (Exception e){
+                    System.out.println("숫자가 아닙니다. 다시 입력하세요.");
+                    scanner.nextLine();
+                }
+            }
+            // 비교 연산 함수 실행
+            calculator.moreHughesResult(compareNumber);
+
+            scanner.nextLine(); // 버퍼에 남은 개행문자 제거
 
             // 저장된 데이터 삭제 하기
             System.out.println("가장 먼저 저장된 데이터를 삭제 하실려면 delete를 입력하세요.");
