@@ -45,7 +45,7 @@ public class App {
 
             scanner.nextLine(); // 버퍼에 남은 개행문자 제거
 
-            System.out.println("사칙연산 기호를 넣어주세요 (+, -, *, /): ");
+            System.out.println("연산 기호를 넣어주세요 (+, -, *, /, %): ");
             String arithmeticOperations = scanner.nextLine();
             calculator.setOperation(arithmeticOperations.charAt(0));
 

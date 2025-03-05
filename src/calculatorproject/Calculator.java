@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 // 제네릭 메서드 선언, 제네릭 함수로 스캐너 받기
 public class Calculator<T> {
     private T firstNumber;
-    private T secondNumber;;
+    private T secondNumber;
     private double result;
     private char operator;
     private boolean isShowResult;
@@ -67,6 +67,11 @@ public class Calculator<T> {
             if (y == 0) throw new ArithmeticException("0으로 나눌 수 없습니다.");
 
             return x / y;
+        }),
+        REMAIN('%', (x,y) -> {
+            if (y == 0) throw new ArithmeticException("0으로 나머지를 구할 수 없습니다.");
+
+            return x % y;
         });
 
         private final char symbol;
@@ -105,6 +110,7 @@ public class Calculator<T> {
         }
         return result;
     }
+
 
     // 저장된 값 중 첫번째 저장값 제거 메소드
     public void removeResult() {
