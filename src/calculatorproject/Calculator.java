@@ -20,40 +20,29 @@ public class Calculator<T> {
     void setFirstNumber(T num) {
         this.firstNumber = num;
     }
-
     void setSecondNumber(T num) {
         this.secondNumber = num;
     }
-
     void setOperation(char operator) {
         this.operator = operator;
     }
 
     // 게터
-    T getFirstNumber() {
-        return this.firstNumber;
-    }
-
-    T getSecondNumber() {
-        return this.secondNumber;
-    }
-
-    double getResult() {
+      double getResult() {
         return this.result;
     }
-
     double getArrayResultSize() {
         return this.arrayResult.size();
     }
-
     double getArrayResultFirst() {
         return this.arrayResult.get(0);
     }
-
     boolean getIsShowResult() {
         return this.isShowResult;
     }
-
+    char getOperator(){
+        return  this.operator;
+    }
     List<Double> getArraylistResult() {
         return arrayResult;
     }
@@ -72,7 +61,9 @@ public class Calculator<T> {
             if (y == 0) throw new ArithmeticException("0으로 나머지를 구할 수 없습니다.");
 
             return x % y;
-        });
+        }),
+        SQUARE('^', (x,y) -> Math.pow(x,y)),
+        ROOT('(', (x,y) -> Math.sqrt(x));
 
         private final char symbol;
         private final BiFunction<Double, Double, Double> operation;
@@ -96,21 +87,26 @@ public class Calculator<T> {
         }
     }
 
-    // 실질적으로 계산 처리 하는 메소드
+    // 실질적으로 계산 처리하는 메소드
     public double calculator() {
-        isShowResult = true;
+
         Operation operation = Operation.fromSymbol(operator);
         if (operation != null) {
             result = operation.apply((double) firstNumber, (double) secondNumber);
             arrayResult.add(result);
-        } else {
-            System.out.println("잘못된 연산자입니다");
-            System.out.println(arrayResult);
-            isShowResult = false;
         }
         return result;
     }
 
+    // 연산기호를 잘못 받으면 수행되는 메소드
+    public void dontInsert() {
+        isShowResult = false;
+        Operation operation = Operation.fromSymbol(operator);
+        if (operation == null) {
+            System.out.println("잘못된 연산자입니다");
+            isShowResult = true;
+        }
+    }
 
     // 저장된 값 중 첫번째 저장값 제거 메소드
     public void removeResult() {

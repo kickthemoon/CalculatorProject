@@ -8,8 +8,6 @@ public class App {
         Calculator calculator = new Calculator();
         String end;
         double result;
-        double firstScanNumber;
-        double secondScanNumber;
         double compareNumber;
         String delete;
 
@@ -24,30 +22,36 @@ public class App {
                     break;
                 } catch (Exception e){
                     System.out.println("숫자가 아닙니다. 다시 입력하세요.");
-                    scanner.nextLine();
+                    scanner.nextLine(); // 버퍼를 제거해서 무한 while 막음
                 }
             }
-            while(true) {
-                System.out.print("두번째 숫자입니다. ");
-                try{
-                    calculator.setSecondNumber(scanner.nextDouble());
-                    break;
-                } catch (Exception e){
-                    System.out.println("숫자가 아닙니다. 다시 입력하세요.");
-                    scanner.nextLine();
-                }
-            }
-
-            firstScanNumber = (double)calculator.getFirstNumber();
-            secondScanNumber = (double)calculator.getSecondNumber();
-
-            System.out.println("당신이 입력한 두 숫자입니다. 첫번째는 " + firstScanNumber + " 이고 두번째는 " + secondScanNumber + " 입니다");
 
             scanner.nextLine(); // 버퍼에 남은 개행문자 제거
+            while (true){
+                System.out.println("연산 기호를 넣어주세요 +, -, *, /, %, ^, ( : ");
+                System.out.println("'(' 는 루트(제곱근) 임시 표기 입니다.");
+                String arithmeticOperations = scanner.nextLine();
+                calculator.setOperation(arithmeticOperations.charAt(0));
+                if(calculator.getIsShowResult()) {
+                    calculator.dontInsert();
+                } else break;
+            }
 
-            System.out.println("연산 기호를 넣어주세요 (+, -, *, /, %): ");
-            String arithmeticOperations = scanner.nextLine();
-            calculator.setOperation(arithmeticOperations.charAt(0));
+            if (calculator.getOperator() != '(') {
+                while (true) {
+                    System.out.print("두번째 숫자입니다. ");
+                    try {
+                        calculator.setSecondNumber(scanner.nextDouble());
+                        break;
+                    } catch (Exception e) {
+                        System.out.println("숫자가 아닙니다. 다시 입력하세요.");
+                        scanner.nextLine(); // 버퍼를 제거해서 무한 while 막음
+                    }
+                }
+                scanner.nextLine(); // 버퍼에 남은 개행문자 제거
+            } else {
+                calculator.setSecondNumber(0.0);
+            }
 
             // 사칙 연산 계산기
             calculator.calculator();
@@ -63,18 +67,12 @@ public class App {
             System.out.println("저장된 값은: " + calculator.getArraylistResult() + "입니다.");
 
             // 비교 숫자 받기
-            while(true) {
-                System.out.print("저장된 값과 비교할 숫자를 입력하세요.");
-                try{
-                    compareNumber = scanner.nextDouble();
-                    break;
-                } catch (Exception e){
-                    System.out.println("숫자가 아닙니다. 다시 입력하세요.");
-                    scanner.nextLine();
-                }
-            }
-            // 비교 연산 함수 실행
-            calculator.moreHughesResult(compareNumber);
+            System.out.println("저장된 값과 비교할 숫자를 입력하세요.");
+            System.out.println("숫자 외 값을 입력하면 넘어갑니다");
+            try {
+                compareNumber = scanner.nextDouble();
+                calculator.moreHughesResult(compareNumber); // 비교 연산 함수 실행
+            } catch (Exception e) {}
 
             scanner.nextLine(); // 버퍼에 남은 개행문자 제거
 
@@ -91,9 +89,12 @@ public class App {
                 }
             }
 
+            System.out.println("현재 남아 있는 저장된 값은: " + calculator.getArraylistResult() + "입니다.");
+
             // exit로 프로그램 종료
             System.out.println("계산기를 종료하고 싶으면 exit를 입력하세요.");
             end = scanner.nextLine();
         } while (!end.equals("exit"));
+        System.out.println("프로그램을 종료합니다");
     }
 }
