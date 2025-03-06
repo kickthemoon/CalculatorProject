@@ -34,10 +34,10 @@ public class Main {
 
                 String arithmeticOperations = scanner.nextLine();
                 calculator.setOperation(arithmeticOperations.charAt(0));
-                calculator.switchBoolean();
+                calculator.doAgainSymbol();
 
                 // 연산기호 잘못 받으면 다시 받도록 처리
-                if(!calculator.getIsShowResult()) {
+                if(calculator.getAgainSymbol()) {
                     System.out.println("잘못된 연산자입니다. 재입력 해주세요");
                 } else break;
             }
@@ -89,6 +89,7 @@ public class Main {
             // 저장된 데이터 삭제 하기
             System.out.println("가장 먼저 저장된 데이터를 삭제 하실려면 delete를 입력하세요.");
             delete = scanner.nextLine();
+
 
             if (delete.equals("delete")) {
                 if (calculator.getArrayResultSize()>0) {

@@ -11,7 +11,7 @@ public class Calculator<T> {
     private T secondNumber;
     private double result;
     private char operator;
-    private boolean isShowResult;
+    private boolean againSymbol;
 
     // 배열 선언
     private ArrayList<Double> arrayResult = new ArrayList<>();
@@ -40,8 +40,8 @@ public class Calculator<T> {
     double getArrayResultFirst() {
         return this.arrayResult.get(0);
     }
-    boolean getIsShowResult() {
-        return this.isShowResult;
+    boolean getAgainSymbol() {
+        return this.againSymbol;
     }
     char getOperator(){
         return  this.operator;
@@ -84,21 +84,21 @@ public class Calculator<T> {
 
     // 실질적으로 계산 처리하는 메소드
     public double calculator() {
-        Operation operation = Operation.fromSymbol(operator);
-        if (operation != null) {
-            result = operation.apply((double) firstNumber, (double) secondNumber);
+        Operation inOperation = Operation.fromSymbol(operator);
+        if (inOperation != null) {
+            result = inOperation.apply((double) firstNumber, (double) secondNumber);
             arrayResult.add(result);
         }
         return result;
     }
 
     // 연산기호를 잘못 받으면 수행되는 메소드
-    public boolean switchBoolean() {
+    public boolean doAgainSymbol() {
         Operation operation = Operation.fromSymbol(operator);
         if (operation != null) {
-            return isShowResult = true;
+            return againSymbol = false;
         } else {
-            return isShowResult = false;
+            return againSymbol = true;
         }
     }
 
