@@ -1,6 +1,5 @@
 package calculatorproject;
 
-import javax.print.attribute.standard.PDLOverrideSupported;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.BiFunction;
@@ -70,12 +69,7 @@ public class Calculator<T> {
         }
 
         public double apply(double x, double y) {
-            try {
-                return operation.apply(x, y);
-            } catch (Exception e) {
-                System.out.println("0으로 나머지와 나눗셈을 하지 마세요.");
-            }
-            return 0;
+            return operation.apply(x, y);
         }
 
         public static Operation fromSymbol(char symbol) {
@@ -90,7 +84,6 @@ public class Calculator<T> {
 
     // 실질적으로 계산 처리하는 메소드
     public double calculator() {
-
         Operation operation = Operation.fromSymbol(operator);
         if (operation != null) {
             result = operation.apply((double) firstNumber, (double) secondNumber);
