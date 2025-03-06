@@ -99,12 +99,12 @@ public class Calculator<T> {
     }
 
     // 연산기호를 잘못 받으면 수행되는 메소드
-    public void dontInsert() {
-        isShowResult = false;
+    public boolean switchBoolean() {
         Operation operation = Operation.fromSymbol(operator);
-        if (operation == null) {
-            System.out.println("잘못된 연산자입니다");
-            isShowResult = true;
+        if (operation != null) {
+            return isShowResult = true;
+        } else {
+            return isShowResult = false;
         }
     }
 

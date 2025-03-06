@@ -27,13 +27,18 @@ public class App {
             }
 
             scanner.nextLine(); // 버퍼에 남은 개행문자 제거
+
             while (true){
                 System.out.println("연산 기호를 넣어주세요 +, -, *, /, %, ^, ( : ");
                 System.out.println("'(' 는 루트(제곱근) 임시 표기 입니다.");
+
                 String arithmeticOperations = scanner.nextLine();
                 calculator.setOperation(arithmeticOperations.charAt(0));
-                if(calculator.getIsShowResult()) {
-                    calculator.dontInsert();
+                calculator.switchBoolean();
+
+                // 연산기호 잘못 받으면 다시 받도록 처리
+                if(!calculator.getIsShowResult()) {
+                    System.out.println("잘못된 연산자입니다. 재입력 해주세요");
                 } else break;
             }
 
@@ -58,11 +63,7 @@ public class App {
 
             // 결과 받아오기
             result = calculator.getResult();
-
-            // 사칙연산 기호를 잘못 입력했을때 결과값 출력하지 않기
-            if(calculator.getIsShowResult()!=false) {
-                System.out.println("값은: " + result);
-            }
+            System.out.println("값은: " + result);
 
             System.out.println("저장된 값은: " + calculator.getArraylistResult() + "입니다.");
 
@@ -89,7 +90,11 @@ public class App {
                 }
             }
 
-            System.out.println("현재 남아 있는 저장된 값은: " + calculator.getArraylistResult() + "입니다.");
+            if(calculator.getArrayResultSize()>0) {
+                System.out.println("현재 남아 있는 저장된 값은: " + calculator.getArraylistResult() + "입니다.");
+            } else {
+                System.out.println("저장된 값이 없습니다.");
+            }
 
             // exit로 프로그램 종료
             System.out.println("계산기를 종료하고 싶으면 exit를 입력하세요.");
