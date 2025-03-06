@@ -43,10 +43,19 @@ public class Main {
             }
 
             if (calculator.getOperator() != '(') {
+
                 while (true) {
                     System.out.print("두번째 숫자입니다. ");
                     try {
                         calculator.setSecondNumber(scanner.nextDouble());
+
+                        if((double)calculator.getSeSecondNumber() == 0) {
+                            if ((calculator.getOperator() == '/') ||
+                                    (calculator.getOperator() == '%')) {
+                                System.out.println("0을 입력 할 수 없습니다.");
+                                continue;
+                            }
+                        }
                         break;
                     } catch (Exception e) {
                         System.out.println("숫자가 아닙니다. 다시 입력하세요.");

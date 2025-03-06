@@ -1,5 +1,6 @@
 package calculatorproject;
 
+import javax.print.attribute.standard.PDLOverrideSupported;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.BiFunction;
@@ -28,7 +29,10 @@ public class Calculator<T> {
     }
 
     // 게터
-      double getResult() {
+    T getSeSecondNumber() {
+        return this.secondNumber;
+    }
+    double getResult() {
         return this.result;
     }
     double getArrayResultSize() {
@@ -52,8 +56,8 @@ public class Calculator<T> {
         ADD('+', (x, y) -> x + y),
         SUBTRACT('-', (x, y) -> x - y),
         MULTIPLY('*', (x, y) -> x * y),
-        DIVIDE('/', (x, y) -> divideNumber(x,y)),
-        REMAIN('%', (x,y) -> remainNumber(x,y)),
+        DIVIDE('/', (x, y) -> x / y),
+        REMAIN('%', (x,y) -> x % y),
         SQUARE('^', (x,y) -> Math.pow(x,y)),
         ROOT('(', (x,y) -> Math.sqrt(x));
 
@@ -81,28 +85,6 @@ public class Calculator<T> {
                 }
             }
             return null;
-        }
-
-        public static double divideNumber(double x, double y) {
-            try {
-                if (y == 0) {
-                    throw new Exception();
-                } else return x / y;
-            } catch (Exception e) {
-                System.out.println("0으로 나눌 수 없습니다.");
-            }
-            return 0;
-        }
-
-        public static double remainNumber(double x, double y) {
-            try {
-                if (y == 0) {
-                    throw new Exception();
-                } else return x % y;
-            } catch (Exception e) {
-                System.out.println("0으로 나머지를 구할 수 업습니다");
-            }
-            return 0;
         }
     }
 
