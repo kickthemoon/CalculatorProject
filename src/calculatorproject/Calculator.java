@@ -52,16 +52,8 @@ public class Calculator<T> {
         ADD('+', (x, y) -> x + y),
         SUBTRACT('-', (x, y) -> x - y),
         MULTIPLY('*', (x, y) -> x * y),
-        DIVIDE('/', (x, y) -> {
-            if (y == 0) throw new ArithmeticException("0으로 나눌 수 없습니다.");
-
-            return x / y;
-        }),
-        REMAIN('%', (x,y) -> {
-            if (y == 0) throw new ArithmeticException("0으로 나머지를 구할 수 없습니다.");
-
-            return x % y;
-        }),
+        DIVIDE('/', (x, y) -> divideNumber(x,y)),
+        REMAIN('%', (x,y) -> remainNumber(x,y)),
         SQUARE('^', (x,y) -> Math.pow(x,y)),
         ROOT('(', (x,y) -> Math.sqrt(x));
 
@@ -84,6 +76,28 @@ public class Calculator<T> {
                 }
             }
             return null;
+        }
+
+        public static double divideNumber(double x, double y) {
+            try {
+                if (y == 0) {
+                    throw new Exception();
+                } else return x / y;
+            } catch (Exception e) {
+                System.out.println("0으로 나눌 수 없습니다.");
+            }
+            return 0;
+        }
+
+        public static double remainNumber(double x, double y) {
+            try {
+                if (y == 0) {
+                    throw new Exception();
+                } else return x % y;
+            } catch (Exception e) {
+                System.out.println("0으로 나머지를 구할 수 업습니다");
+            }
+            return 0;
         }
     }
 
