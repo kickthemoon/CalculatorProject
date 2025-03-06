@@ -74,7 +74,12 @@ public class Calculator<T> {
         }
 
         public double apply(double x, double y) {
-            return operation.apply(x, y);
+            try {
+                return operation.apply(x, y);
+            } catch (Exception e) {
+                System.out.println("0으로 나머지와 나눗셈을 하지 마세요.");
+            }
+            return 0;
         }
 
         public static Operation fromSymbol(char symbol) {
